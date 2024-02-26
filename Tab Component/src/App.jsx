@@ -22,9 +22,15 @@ const tabData = [
 function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [isShow, setIsShow] = useState(true);
+  const [count, setCount] = useState(0);
   const handleActiveTab = (id) => {
     setActiveTab(id);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+    // setCount(count + 1); //async : 0 + 1 => 1
+    // setCount(count + 1); // : 0 + 1 => 1
   };
+  //updating state based on prev state value: callback method !
   return (
     <div>
       <button onClick={() => setIsShow(!isShow)}> ❌ </button>
@@ -42,7 +48,9 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="tab__content"> {tabData[activeTab - 1].content}</div>
+          <div className="tab__content">
+            {tabData[activeTab - 1].content} - {count}
+          </div>
         </div>
       ) : (
         <p>closed.</p>
