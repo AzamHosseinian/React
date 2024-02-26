@@ -20,36 +20,33 @@ const tabData = [
 ];
 
 function App() {
-  // const activeTab = 2;
-  // React hooks (useState,useEffect, ...)
-  const [activeTab, setActiveTab] = useState(1); // [state,function()] ===> [state,setState]
-  // setter function => ✅
-  // immutable
+  const [activeTab, setActiveTab] = useState(1);
+  const [isShow, setIsShow] = useState(true);
   const handleActiveTab = (id) => {
-    // console.log(id);
     setActiveTab(id);
   };
-  // activeTab => update UI =>
-  // update tab style
-  // update indicator
-  // update content
-
-  // React ==> React, reacts to state changes!
   return (
-    <div className="tab">
-      <div className="tab__header">
-        {tabData.map((tab) => (
-          <button
-            onClick={() => handleActiveTab(tab.id)}
-            key={tab.id}
-            className={activeTab === tab.id ? "active" : ""}
-          >
-            <span>{tab.title}</span>
-            <span className="tab-indicator"></span>
-          </button>
-        ))}
-      </div>
-      <div className="tab__content"> {tabData[activeTab - 1].content}</div>
+    <div>
+      <button onClick={() => setIsShow(!isShow)}> ❌ </button>
+      {isShow ? (
+        <div className="tab">
+          <div className="tab__header">
+            {tabData.map((tab) => (
+              <button
+                onClick={() => handleActiveTab(tab.id)}
+                key={tab.id}
+                className={activeTab === tab.id ? "active" : ""}
+              >
+                <span>{tab.title}</span>
+                <span className="tab-indicator"></span>
+              </button>
+            ))}
+          </div>
+          <div className="tab__content"> {tabData[activeTab - 1].content}</div>
+        </div>
+      ) : (
+        <p>closed.</p>
+      )}
     </div>
   );
 }
