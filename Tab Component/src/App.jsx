@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 const tabData = [
@@ -19,15 +20,21 @@ const tabData = [
 ];
 
 function App() {
-  const activeTab = 2;
+  // const activeTab = 2;
+  // React hooks (useState,useEffect, ...)
+  const [activeTab, setActiveTab] = useState(1); // [state,function()] ===> [state,setState]
+  // setter function => ✅
+  // immutable
   const handleActiveTab = (id) => {
-    console.log(id);
+    // console.log(id);
+    setActiveTab(id);
   };
   // activeTab => update UI =>
   // update tab style
   // update indicator
   // update content
 
+  // React ==> React, reacts to state changes!
   return (
     <div className="tab">
       <div className="tab__header">
